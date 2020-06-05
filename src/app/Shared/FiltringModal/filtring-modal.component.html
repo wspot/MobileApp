@@ -1,0 +1,90 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>{{modalTitle}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="onCancelModal()" color="danger" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-list *ngIf="activatedModalID == modalTypes.genderModal.id">
+    <ion-radio-group [(ngModel)]="Filter.Gender">
+      <ion-item>
+        <ion-label>Male</ion-label>
+        <ion-radio slot="start" [value]="true"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Female</ion-label>
+        <ion-radio slot="start" [value]="false"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>All</ion-label>
+        <ion-radio slot="start" value="{{undefined}}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-list *ngIf="activatedModalID == modalTypes.rolesModal.id">
+    <ion-item>
+      <ion-label>role1</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>role2</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>role3</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="activatedModalID == modalTypes.izciTypesModal.id">
+    <ion-item>
+      <ion-label>type 1</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>type 2</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>type 3</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="activatedModalID == modalTypes.registrationDateModal.id">
+    <ion-item>
+      <ion-label>Start :</ion-label>
+      <ion-datetime displayFormat="DD MM  YYYY" placeholder="dd/mm/yyy" [(ngModel)]="Filter.RegisterStartDate">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End :</ion-label>
+      <ion-datetime displayFormat="DD MM  YYYY" placeholder="dd/mm/yyy" [(ngModel)]="Filter.RegisterEndDate">
+      </ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="activatedModalID == modalTypes.birthdayModal.id">
+    <ion-item>
+      <ion-label>Start :</ion-label>
+      <ion-datetime displayFormat="DD MM  YYYY" placeholder="dd/mm/yyy" [(ngModel)]="Filter.BirthStartDate">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End :</ion-label>
+      <ion-datetime displayFormat="DD MM  YYYY" placeholder="dd/mm/yyy" [(ngModel)]="Filter.BirthEndDate">
+      </ion-datetime>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border" no-border>
+  <ion-toolbar class="ion-no-border">
+    <ion-button (click)="onConfirmFilter()" expand="block" fill="solid" color="dark">
+      Confirm
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

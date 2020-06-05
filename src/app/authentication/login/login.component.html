@@ -1,0 +1,105 @@
+<ion-content>
+  <div class="ion-padding">
+
+    <ion-row class="ion-margin-bottom">
+      <ion-col size="4" offset="4">
+        <img src="assets/images/logo.png" class="logo" />
+      </ion-col>
+    </ion-row>
+
+
+
+    <div class="input-item ion-margin-bottom">
+      <ion-label position="stacked">Kullanıcı Adı</ion-label>
+      <ion-input type="text" [(ngModel)]="username" color="medium" (ionChange)="onCredentialsChange()"></ion-input>
+      <ion-label color="danger" class="ion-margin-top" *ngIf="userNameError">
+        *Boş
+        Bırakılamaz.
+      </ion-label>
+    </div>
+
+    <div class="input-item ion-margin-top">
+      <ion-label position="stacked">Şifre</ion-label>
+      <ion-input type="password" [(ngModel)]="password" color="medium" (ionChange)="onCredentialsChange()"></ion-input>
+      <ion-label color="danger" class="ion-margin-top" *ngIf="passwordError">
+        *Boş
+        Bırakılamaz.
+      </ion-label>
+    </div>
+
+    <ion-row justify-content-center *ngIf="wrongCredentials">
+      <ion-col size="auto" class="ion-text-center">
+        <ion-text color="danger">
+          <h5>{{errorMessage}}</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-align-items-center" justify-content-between>
+      <ion-col size="auto">
+        <div>
+          <ion-checkbox class="ion-margin-end">
+          </ion-checkbox>
+          <ion-label>Beni Hatırla</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="auto">
+        <div lines="none" (click)="navigate('/login/forgetpass')">
+          <ion-text color="primary">
+            <p color="primary">Şifremi Unuttum</p>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="">
+      <ion-col size="12" class="ion-no-padding">
+        <ion-button color="success" expand="block" (click)="onConnet()">Giriş Yap
+          <ion-spinner *ngIf="showSpinner" name="lines-small" class="ion-margin-start"></ion-spinner>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <div class="ion-no-border buttons-footer " *ngIf="false">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="block" color="success" (click)="navigatewithparam('/login/register','izci')">İzci Kayıt
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="block" color="success" (click)="navigatewithparam('/login/register','veli')">Veli Kayıt
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="block" color="success" (click)="navigate('/home')">Anasayfaya Dön</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="ion-no-border buttons-footer ">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="block" color="success" (click)="navigatewithparam('/login/register','izci')">İzci Kayıt
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="block" color="success" (click)="navigatewithparam('/login/register','veli')">Veli Kayıt
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="block" color="success" (click)="navigate('/home')">Anasayfaya Dön</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </div>
+
+
+
+</ion-content>

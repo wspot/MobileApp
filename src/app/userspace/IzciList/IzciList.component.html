@@ -1,0 +1,29 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+
+<ion-content>
+  <ion-list class="ion-no-padding" lines="full" *ngIf="izciListData.length > 0">
+    <ion-item *ngFor="let izciItem of izciListData" (click)="navigate('/user/1/izcidetails/'+izciItem.KullaniciID)"
+      detail>
+      <ion-avatar slot="start" class="">
+        <img src="{{ 'data:image/jpeg;base64,'+ izciItem.Resim}}">
+      </ion-avatar>
+      <ion-label class="ion-no-margin">
+        <ion-row class="">
+          <ion-col size="12" class="ion-text-center">
+            <h3>{{izciItem.Ad+ ' ' +izciItem.Soyad }}</h3>
+          </ion-col>
+        </ion-row>
+        <ion-row class="">
+          <ion-col size="6" class="ion-text-center">
+            <h4>{{izciItem.Tel }}</h4>
+          </ion-col>
+          <ion-col size="6" class="ion-text-center">
+            <h4> {{izciItem.Yas }}</h4>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<app-footer></app-footer>

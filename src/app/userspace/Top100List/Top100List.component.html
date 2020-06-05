@@ -1,0 +1,43 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+<ion-content>
+  <div class="ion-padding-horizontal">
+    <ion-row justify-content-between class="ion-padding-top">
+      <ion-col size="auto">
+        <ion-button color="light" (click)="navigate('/user/1/filter')">
+          Filtrele
+        </ion-button>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button color="light">
+          Sıralama
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-list class="ion-no-padding">
+      <ion-item lines="none" class="ion-margin-top" *ngFor="let item of topListData;let i = index"
+        (click)="navigate('/user/1/activitieslist')">
+        <ion-avatar slot="start" class="ion-no-margin">
+          <img src="assets/images/ocp.jpeg">
+        </ion-avatar>
+        <ion-label class="ion-no-margin">
+          <ion-row class="">
+            <ion-col size="12" class="ion-text-center">
+              <h3>{{item.Name + item.Surname}}</h3>
+            </ion-col>
+          </ion-row>
+          <ion-row class="">
+            <ion-col size="6" class="ion-text-center">
+              <h4>{{item.TotalScore}}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+        <ion-text slot="end" class="ion-no-margin">
+          <h1>{{i+1}}</h1>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

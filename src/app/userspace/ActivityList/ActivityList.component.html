@@ -1,0 +1,48 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+
+<ion-content>
+  <div class="ion-padding-horizontal">
+    <ion-row class="" justify-content-center>
+      <ion-col size="auto" class="ion-text-center">
+        <ion-avatar>
+          <img src="{{profileImage}}">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    <ion-row class="">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text color="dark" class="ion-no-margin">
+          <h5 class="ion-no-margin">{{userName +' '+userSurName }}</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-list class="ion-no-padding" lines="full">
+    <ion-item *ngFor="let item of ActivitiesData" class="" color={{getActivityColor(item.ActivityType)}}
+      (click)="onClickActivity(item.ActivityID)" detail>
+      <ion-avatar slot="start" class="ion-no-margin">
+        <img src="assets/images/ocp.jpeg">
+      </ion-avatar>
+      <ion-label class="ion-no-margin">
+        <ion-row class="">
+          <ion-col size="12" class="ion-text-center">
+            <h3>{{item.ActivityName}}</h3>
+          </ion-col>
+        </ion-row>
+        <ion-row class="">
+          <ion-col size="12" class="ion-text-center">
+            <h4>{{item.Description}}</h4>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<app-footer></app-footer>

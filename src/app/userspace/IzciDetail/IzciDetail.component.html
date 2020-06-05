@@ -1,0 +1,74 @@
+<app-header [loginbutton]='false'></app-header>
+
+<ion-content *ngIf="detailsData !== undefined ">
+  <ion-list class="ion-no-padding">
+    <ion-item class="ion-margin-top" lines="none">
+      <ion-avatar slot="start" class="">
+        <img src="{{profileImage}}">
+      </ion-avatar>
+      <ion-label class="ion-no-margin">
+        <ion-row class="">
+          <ion-col size="auto" class="ion-no-padding">
+            <ion-text color="dark">
+              <h1>{{ detailsData.Ad +' '+ detailsData.Soyad }}</h1>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row class="">
+          <ion-col size="auto" class="ion-no-padding">
+            <ion-text color="dark">
+              <h4>{{ detailsData.UniteIsmi }}</h4>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="auto" class="ion-no-padding">
+            <ion-button (click)="onSendMessageToChild()" color="success" shape="round">Mesaj Gönder</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Buttons Div -->
+  <ion-grid>
+    <ion-row class="ion-padding-vertical" justify-content-center>
+      <ion-col class="ion-no-padding" size="auto">
+        <ion-button color="light" expand="block">
+          <p>İzci Detay</p>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-no-padding" size="auto">
+        <ion-button color="light" expand="block">
+          <p>İzci Sağlık</p>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-no-padding" size="auto">
+        <ion-button color="light" expand="block" disabled="{{userLoginID == null}}"
+          (click)="navigate('/user/1/missionslist/'+userLoginID)">İzci Uğraşıları
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-no-padding" size="auto">
+        <ion-button color="light" expand="block" disabled="{{userLoginID == null}}"
+          (click)="navigate('/user/1/rozetlist/'+userLoginID)">Rozetler
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Details Div -->
+  <ion-item *ngFor="let field of userDetailsFields">
+    <ion-col class="" size="6">
+      <ion-text color="dark" class="ion-text-left">
+        <h5 class="ion-no-margin">{{ field.fieldCorrectedName }} :</h5>
+      </ion-text>
+    </ion-col>
+    <ion-col class="" size="6">
+      <ion-text color="dark" class="ion-text-right">
+        <p class="ion-no-margin">
+          {{ detailsData[ field.fieldName]  }}</p>
+      </ion-text>
+    </ion-col>
+  </ion-item>
+</ion-content>
+<app-footer></app-footer>

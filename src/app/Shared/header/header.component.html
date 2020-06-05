@@ -1,0 +1,36 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+
+      <ion-button *ngIf="loginbutton" (click)="setConfig()">
+        <ion-icon slot="icon-only" name="list" size="large"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="!loginbutton" (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu" size="large"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title class="ion-text-center" *ngIf="!showLogo" color="dark">{{title}}</ion-title>
+    <ion-title class="ion-text-center" *ngIf="showLogo"><img src="assets/images/logo.png" class="logo"></ion-title>
+
+
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!loginbutton" (click)="onLogOut()">
+        <ion-text color="danger" class="underlined-text">
+          Çıkıs<br>Yap
+        </ion-text>
+      </ion-button>
+
+      <ion-button *ngIf="loginbutton" (click)="onLogIn()">
+        <ion-text color="success" class="underlined-text">
+          Giriş<br>Yap
+        </ion-text>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-progress-bar *ngIf="loadingBar" type="indeterminate" color="medium"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>

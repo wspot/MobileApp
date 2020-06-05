@@ -1,0 +1,56 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+<ion-content>
+  <ion-list lines="full">
+    <ion-item detail (click)="onOpenFiltersModal(modalTypes.organisationModal.name)"
+      color={{getItemColor(modalTypes.organisationModal.name)}}>
+      <ion-label>Choose Organisation</ion-label>
+    </ion-item>
+    <ion-item detail (click)="onOpenFiltersModal(modalTypes.genderModal.name)"
+      color={{getItemColor(modalTypes.genderModal.name)}}>
+      <ion-label>Choose gender</ion-label>
+    </ion-item>
+    <ion-item detail (click)="onOpenFiltersModal(modalTypes.izciTypesModal.name)"
+      color={{getItemColor(modalTypes.izciTypesModal.name)}}>
+      <ion-label>Choose izci type </ion-label>
+    </ion-item>
+    <ion-item detail (click)="onOpenFiltersModal(modalTypes.rolesModal.name)"
+      color={{getItemColor(modalTypes.rolesModal.name)}}>
+      <ion-label>Choose roles</ion-label>
+    </ion-item>
+    <ion-item detail (click)="onOpenFiltersModal(modalTypes.registrationDateModal.name)"
+      color={{getItemColor(modalTypes.registrationDateModal.name)}}>
+      <ion-label>Choose date range of registrations</ion-label>
+    </ion-item>
+    <ion-item detail (click)="onOpenFiltersModal(modalTypes.birthdayModal.name)"
+      color={{getItemColor(modalTypes.birthdayModal.name)}}>
+      <ion-label>Choose date range of birthday</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-row justify-content-center *ngIf="isleader">
+    <ion-col size="auto" expand="block">
+      <ion-button expand="block" fill="outline" color="dark">
+        Get all my izci
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer class="ion-no-border" no-border>
+  <ion-toolbar>
+    <ion-row justify-content-center>
+      <ion-col size="8">
+        <ion-button size="large" expand="block" fill="outline" color="danger" (click)="onResetFilters()">
+          Reset filters
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col size="8">
+        <ion-button size="large" expand="block" fill="outline" color="dark" (click)="onSendFilters()">
+          Filter
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

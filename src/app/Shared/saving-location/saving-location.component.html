@@ -1,0 +1,38 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Saving Location</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="onCancelModal()" color="danger" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-item>
+      <ion-label>Longitude : </ion-label>
+      <ion-label *ngIf="!loadingMode">{{longitude}} </ion-label>
+      <ion-spinner *ngIf="loadingMode" name="lines"></ion-spinner>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Latitude : </ion-label>
+      <ion-label *ngIf="!loadingMode">{{latitude}} </ion-label>
+      <ion-spinner *ngIf="loadingMode" name="lines"></ion-spinner>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Accuracy : </ion-label>
+      <ion-label *ngIf="!loadingMode">{{ accuracy | number }} </ion-label>
+      <ion-spinner name="lines" *ngIf="loadingMode"></ion-spinner>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border" no-border>
+  <ion-toolbar class="ion-no-border">
+    <ion-button (click)="onSave()" disabled="{{loadingMode}}" expand="block" fill="solid" color="success">
+      Save Location
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

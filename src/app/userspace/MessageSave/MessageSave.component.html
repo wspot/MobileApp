@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-back-button></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="false">
+        <ion-icon slot="icon-only" name="attach"></ion-icon>
+      </ion-button>
+      <ion-button (click)="sendMessage()">
+        <ion-icon slot="icon-only" name="arrow-dropright-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="">
+
+  <ion-item disabled="true">
+    <ion-label>Kimden</ion-label>
+    <ion-input [(ngModel)]="Username"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="groupUsers !== undefined && respondMode">
+    <ion-label>Kime</ion-label>
+    <ion-select multiple="true" [(ngModel)]="selectedUsers">
+      <ion-select-option *ngFor="let item of groupUsers" value="{{item.UserLoginID}}" disabled="{{respondMode}}">
+        {{item.Name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="groupUsers !== undefined && !respondMode">
+    <ion-label>Kime</ion-label>
+    <ion-select multiple="true" [(ngModel)]="selectedUsers">
+      <ion-select-option *ngFor="let item of groupUsers" value="{{item.UserLoginID}}" disabled="{{respondMode}}">
+        {{item.Name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="respondMode !== undefined">
+    <ion-label>Konu</ion-label>
+    <ion-input [(ngModel)]="subject" disabled="{{respondMode}}"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="content" autoGrow="true" rows="10"></ion-textarea>
+  </ion-item>
+
+</ion-content>
+<app-footer></app-footer>

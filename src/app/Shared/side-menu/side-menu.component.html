@@ -1,0 +1,120 @@
+<ion-menu side="start" menuId="MainMenu" contentId="mainContent" disabled="false">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Ana Menü</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+
+      <ion-item (click)="navigate('/user/1/profile')">
+        <ion-avatar slot="start">
+          <ion-icon name="person"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Profil</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/notificationslist')">
+        <ion-avatar slot="start">
+          <ion-icon name="notifications"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Bildirimler</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/unitelist')" *ngIf="userPermissions && userPermissions.CanSeeIzcilerim">
+        <ion-avatar slot="start">
+          <ion-icon name="bonfire"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>İzcilerim</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/childslist')" *ngIf="userPermissions && userPermissions.CanSeeCocuklarim">
+        <ion-avatar slot="start">
+          <ion-icon name="contacts"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Çocuklarım</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/rozetlist')">
+        <ion-avatar slot="start">
+          <ion-icon name="ribbon"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Arma Yönetimi</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/messageslist')">
+        <ion-avatar slot="start">
+          <ion-icon name="mail-unread"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Mesajlar</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/missionslist')" *ngIf="userPermissions &&  userPermissions.CanListUgrasilar">
+        <ion-avatar slot="start">
+          <ion-icon name="flower"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Uğraşı Listesi</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/annoucementslist')">
+        <ion-avatar slot="start">
+          <ion-icon name="stats"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Duyurular</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/toprating')">
+        <ion-avatar slot="start">
+          <ion-icon name="trending-up"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Top 100</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/aboutus')">
+        <ion-avatar slot="start">
+          <ion-icon name="people"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Hakkımızda</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item (click)="navigate('/user/1/settings')">
+        <ion-avatar slot="start">
+          <ion-icon name="settings"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Ayarlar</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-icon name="help-circle-outline"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2>Nasıl Kullanılır</h2>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>

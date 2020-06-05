@@ -1,0 +1,53 @@
+<app-header [loginbutton]='false'></app-header>
+
+<ion-content>
+  <div class="ion-padding">
+
+    <ion-row justify-content-center>
+      <ion-col size="10">
+        <ion-card>
+          <div class="card_header">
+            <img src="assets/images/document.jpeg" class="card-Image" />
+          </div>
+          <ion-card-content class="ion-no-padding">
+            <ion-button expand="block" color="medium" strong="true" (click)="navigate('/user/1/annoucementslist')">
+              Duyurlar
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <ion-col size="10">
+        <ion-card>
+          <div class="card_header">
+            <img src="assets/images/competition.jpeg" class="card-Image" />
+          </div>
+          <ion-card-content class="ion-no-padding">
+            <ion-button expand="block" color="medium" strong="true" (click)="navigate('/user/1/toprating')">Top
+              100
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <ion-col size="10">
+        <ion-card>
+          <div class="card_header">
+            <img src="assets/images/izcilik.jpeg" class="card-Image" />
+          </div>
+          <ion-card-content class="ion-no-padding">
+            <ion-button expand="block" color="medium" strong="true" (click)="navigate('/user/1/aboutus')">Hakkimizda
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

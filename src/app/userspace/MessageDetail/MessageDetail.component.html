@@ -1,0 +1,115 @@
+<app-header [loginbutton]='false'></app-header>
+
+<ion-content>
+
+  <ion-card *ngIf="DetailsHeader !== undefined ">
+    <ion-card-header class="ion-no-padding">
+      <ion-list class="ion-no-padding">
+        <ion-item detail="true" detail-icon="arrow-dropup" lines="none">
+          <ion-avatar slot="start">
+            <img src="https://ui-avatars.com/api/?rounded=true">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ DetailsHeader.Subject }}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+
+    <ion-card-content class="ion-no-padding">
+      <ion-grid>
+
+        <ion-row class="">
+          <ion-col class="ion-no-padding ion-padding-end" size="auto">
+            <ion-text color="dark">
+              <h5 class="ion-no-margin boldText">Oluşturan :</h5>
+            </ion-text>
+          </ion-col>
+          <ion-col class="ion-no-padding" size="auto">
+            <ion-text color="dark">
+              <p class="ion-no-margin">{{ DetailsHeader.UserSender.Name }}</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="">
+          <ion-col class="ion-no-padding ion-padding-end" size="auto">
+            <ion-text color="dark">
+              <h5 class="ion-no-margin boldText">Grup Listesi :</h5>
+            </ion-text>
+          </ion-col>
+          <ion-col class="ion-no-padding" size="auto">
+            <ion-text color="dark " class="">
+              <p class="ion-no-margin">{{ groupUsers }}</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="">
+          <ion-col class="ion-no-padding ion-padding-end" size="auto">
+            <ion-text color="dark">
+              <h5 class="ion-no-margin boldText">Tarih :</h5>
+            </ion-text>
+          </ion-col>
+          <ion-col class="ion-no-padding" size="auto">
+            <ion-text color="dark">
+              <p class="ion-no-margin">{{ DetailsHeader.SendDate | date:'dd/M/yy' }}</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="">
+          <ion-col class="ion-no-padding ion-padding-end" size="auto">
+            <ion-text color="dark">
+              <h5 class="ion-no-margin boldText">Saat :</h5>
+            </ion-text>
+          </ion-col>
+          <ion-col class="ion-no-padding" size="auto">
+            <ion-text color="dark">
+              <p class="ion-no-margin">{{ DetailsHeader.SendDate | date:'shortTime' }}</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let message of MessagesData; let last = last">
+    <ion-card-header class="ion-no-padding">
+      <ion-list class="ion-no-padding">
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img src="https://ui-avatars.com/api/?rounded=true">
+          </ion-avatar>
+          <ion-label>
+            <h2 style="font-size: 20px; display:inline-block; margin-right:5px;">{{message.UserSender.Name}}</h2>
+            <ion-text color="medium">
+              <h3 style=" display:inline-block;">{{message.SendDate | date:'medium' }}</h3>
+            </ion-text>
+            <ion-text color="danger">
+              <h3>{{message.Subject}}</h3>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+
+    <ion-card-content class="">
+      <ion-text>
+        <h5>
+          {{message.Content}}
+        </h5>
+      </ion-text>
+      <ion-button color="light" *ngIf="last" size="small" class="ion-float-right ion-margin-bottom"
+        (click)="respondToConversation()">Yanilta</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<app-footer></app-footer>

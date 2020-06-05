@@ -1,0 +1,25 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+
+<ion-content>
+    <ion-list class="ion-no-padding" lines="full" >
+      <ion-item *ngFor="let unityItem of unitiesData"  class="" (click)="onChooseUnity(unityItem.OrganizationBirimID)" detail>
+        <ion-label class="ion-no-margin">
+          <ion-row class="">
+            <ion-col size="12" class="ion-text-center">
+                <h2>{{unityItem.Name}}</h2> 
+            </ion-col>
+          </ion-row>
+          <ion-row class="">
+            <ion-col size="6" class="ion-text-center">
+              <h4>{{unityItem.Description}}</h4>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+              <h4>{{unityItem.Code}}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>
+
+<app-footer></app-footer>

@@ -1,0 +1,29 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+<ion-content>
+  <div class="">
+    <ion-list class="ion-no-padding" lines="full" *ngIf="badgesData.length > 0">
+      <ion-item *ngFor="let item of badgesData">
+        <ion-avatar slot="start" class="ion-no-margin">
+          <img src="assets/images/rozet.jpeg">
+        </ion-avatar>
+        <ion-label class="ion-no-margin">
+          <ion-row class="">
+            <ion-col size="12" class="ion-text-center">
+              <h3>{{item.BadgeName}}</h3>
+            </ion-col>
+          </ion-row>
+          <ion-row class="">
+            <ion-col size="6" class="ion-text-center">
+              <h4>{{item.BadgeID}}</h4>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+              <h4> {{item.Description}}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

@@ -1,0 +1,24 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+
+<ion-content>
+  <ion-list lines="full" *ngIf="notificationsData !== undefined">
+    <ion-item *ngFor="let item of notificationsData" color="light" detail>
+      <!-- <ion-checkbox slot="start" [(ngModel)]="item.isChecked"
+        (ionChange)="oncheckItem(item.isChecked,item.NotificationID)">
+      </ion-checkbox> -->
+      <ion-label>{{ item.Content }}</ion-label>
+      <ion-icon slot="end" name="trash" (click)="onDeleteSingleItem(item)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
+
+<ion-footer class="ion-no-border" no-border>
+  <ion-toolbar>
+    <ion-button expand="block" (click)="onDeleteAllItems()" color="success"
+      disabled="{{ notificationsData !== undefined && notificationsData.length == 0}}">
+      Bildirimleri Temizleme
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

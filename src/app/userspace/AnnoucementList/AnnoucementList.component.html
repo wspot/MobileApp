@@ -1,0 +1,18 @@
+<app-header [loginbutton]='false' [loadingBar]='false' [showLogo]='false' [title]='PageTitle'></app-header>
+<ion-content>
+  <div class="ion-padding-horizontal ion-padding-top">
+    <ion-list *ngIf="annoucementData !== undefined">
+      <ion-item *ngFor="let item of annoucementData" class="ion-margin-top" color="light" lines="none">
+        <ion-text>
+          <p class="no-margin-bottom">{{item.Subject}} </p>
+          <span class="no-margin-bottom">{{item.Date | date :'d/M/yyyy , H:mm' }} </span>
+        </ion-text>
+        <ion-button slot="end" class="" color="primary" fill="outline" shape="round" (click)="onClickLink(item.Link)">
+          Link
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

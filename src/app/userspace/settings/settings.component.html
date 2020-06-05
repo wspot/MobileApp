@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-back-button></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-top" *ngIf="!loggedIn">
+    <ion-item>
+      <ion-label position="stacked">Username : </ion-label>
+      <ion-input type="text" [(ngModel)]="username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Password :</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-button class="ion-margin-top" (click)="onLogin()" expand="block" color="primary">
+      LOGIN
+    </ion-button>
+  </div>
+
+  <div class="ion-padding" *ngIf="loggedIn">
+    <ion-list *ngIf="false">
+      <ion-item>
+        <ion-label>Api Config </ion-label>
+        <ion-select multiple="false" cancelText="Cancel" okText="Confirm" [(ngModel)]="selectedConfig">
+          <ion-select-option value="TestConfig">Test System</ion-select-option>
+          <ion-select-option value="RealConfig">Real System</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-button (click)="onAddNewConfig()" size="small" color="success" class="ion-margin-left" slot="start">
+        Add config
+      </ion-button>
+      <ion-button (click)="onClick()" size="small" color="danger" slot="end" *ngIf="false">
+        Delete config
+      </ion-button>
+
+      <ion-radio-group class="ion-padding-top" [(ngModel)]="selectedConfig">
+
+        <ion-item *ngFor="let item of possibleConfigurations">
+          <ion-label>{{ item.value }}</ion-label>
+          <ion-radio slot="start" value={{item.value}}></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+
+    <ion-button (click)="onChangeConfig()" class="ion-margin-top" expand="block" color="primary">
+      Save Config
+    </ion-button>
+  </div>
+
+</ion-content>
+<app-footer></app-footer>

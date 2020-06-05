@@ -1,0 +1,103 @@
+<app-header [loginbutton]='false' [loadingBar]="false" [showLogo]='false' [title]='PageTitle'></app-header>
+<ion-content>
+  <div class="ion-padding">
+    <ion-row class="" justify-content-center>
+      <ion-col size="auto" class="ion-text-center">
+        <ion-avatar (click)="onChangeImage()">
+          <img src="{{profileImage}}">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" *ngIf="sourcemode == 'Veli'" justify-content-center>
+      <ion-col size="12" class="">
+        <ion-label position="stacked">Tc kimlik no</ion-label>
+        <ion-input type="number" [(ngModel)]="TCKimlikNo" color="medium" (ionChange)="onInputsChange()">
+        </ion-input>
+        <ion-label *ngIf="kimlikError" color="danger" class="ion-margin-top">*Boş Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" justify-content-center>
+      <ion-col size="12" class="">
+        <ion-label>Kullanıcı Adı</ion-label>
+        <ion-input type="text" [(ngModel)]="username" color="medium" (ionChange)="onInputsChange()"></ion-input>
+        <ion-label *ngIf="usernameError" color="danger " class="ion-margin-top">*Boş Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" justify-content-center>
+      <ion-col size="6" class="">
+        <ion-label>Ad</ion-label>
+        <ion-input type="text" [(ngModel)]="name" color="medium" disabled="{{disableNameAndSurname}}"
+          (ionChange)="onInputsChange()"></ion-input>
+        <ion-label *ngIf="nameError && !disableNameAndSurname " color="danger " class="ion-margin-top">*Boş Bırakılamaz.
+        </ion-label>
+      </ion-col>
+      <ion-col size="6" class="">
+        <ion-label>Soyad</ion-label>
+        <ion-input type="text" [(ngModel)]="surname" color="medium" disabled="{{disableNameAndSurname}}"
+          (ionChange)="onInputsChange()"></ion-input>
+        <ion-label *ngIf="surnameError  && !disableNameAndSurname " color="danger " class="ion-margin-top">*Boş
+          Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" justify-content-center>
+      <ion-col size="12">
+        <ion-label>Mail Adresi</ion-label>
+        <ion-input type="email" [(ngModel)]="email" color="medium" (ionChange)="onInputsChange()"></ion-input>
+        <ion-label *ngIf="emailError " color="danger " class="ion-margin-top">*Boş Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-top" justify-content-center>
+      <ion-col size="12">
+        <ion-label>Telefon Numarası</ion-label>
+        <ion-input type="tel" [(ngModel)]="phone" color="medium" (ionChange)="onInputsChange()"></ion-input>
+        <ion-label *ngIf="phoneError " color="danger " class="ion-margin-top">*Boş Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <!-- this is password Input : And it is not used  -->
+    <ion-row class="ion-margin-top" justify-content-center *ngIf="!userExists">
+      <ion-col size="12">
+        <ion-label>Şifre</ion-label>
+        <ion-input type="text" [(ngModel)]="password" color="medium" (ionChange)="onInputsChange()">
+        </ion-input>
+        <ion-label *ngIf="passwordError " color="danger " class="ion-margin-top">*Boş Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" justify-content-center *ngIf="!userExists">
+      <ion-col size="12">
+        <ion-label>Şifre Tekrar</ion-label>
+        <ion-input type="text" [(ngModel)]="passwordAgain" color="medium" (ionChange)="onInputsChange()"></ion-input>
+        <ion-label *ngIf="passwordAgainError " color="danger " class="ion-margin-top">*Boş Bırakılamaz.</ion-label>
+      </ion-col>
+    </ion-row>
+    <!-- this is password Input End  -->
+
+    <ion-row class="ion-margin-top" *ngIf="sourcePage !== 'register'" justify-content-center>
+      <ion-col size="8" class="ion-no-padding">
+        <ion-button color="danger" expand="block" (click)="navigate('/login/changepass/normal')">Şifre Güncelle
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="" justify-content-center>
+      <ion-col size="8" class="ion-no-padding">
+        <ion-button color="success" expand="block" (click)="onClickUpdate()">Bilgilerimi Güncelle</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="" justify-content-center *ngIf="updateErrorMessage !== '' ">
+      <ion-col size="auto ">
+        <ion-text color="danger">
+          <h4 class="ion-no-margin">{{updateErrorMessage}}</h4>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+
+
+</ion-content>

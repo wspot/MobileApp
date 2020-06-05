@@ -1,0 +1,22 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Configuration Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="onCancelModal()" color="danger" slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" fullscreen>
+  <ion-item>
+    <ion-label position="stacked">Server Address :</ion-label>
+    <ion-input [(ngModel)]="ipAddress" minlength="3"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer class="ion-no-border" no-border>
+  <ion-toolbar class="ion-no-border">
+    <ion-button (click)="onSave()" expand="block" fill="solid" color="dark">
+      Save
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

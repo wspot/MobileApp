@@ -1,0 +1,139 @@
+<!-- Back button with no text and custom icon -->
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigate('/login')" size="large">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title color="danger">{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <div *ngIf="pageName == 'veli'" class="ion-padding">
+
+    <div class="input-item ion-margin-top">
+      <ion-label position="stacked">Referans numarasi giriniz</ion-label>
+      <ion-input [(ngModel)]="referans" color="medium" (ionChange)="onVeliCredentialsChange()"></ion-input>
+      <ion-label color="danger " class="ion-margin-top" *ngIf="referansError">*Boş Bırakılamaz.</ion-label>
+    </div>
+
+
+    <ion-row class="ion-margin-top" justify-content-center>
+      <ion-col size="12" class="ion-no-padding">
+        <ion-button color="success" expand="block" (click)="onRegisterWithReference()">Kayit Ol
+          <ion-spinner *ngIf="showSpinner" name="lines-small" class="ion-margin-start"></ion-spinner>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="pageName == 'izci'" class="ion-padding">
+
+    <div class="input-item ion-margin-bottom">
+      <ion-label position="stacked">Tc kimlik no</ion-label>
+      <ion-input type="number" [(ngModel)]="kimlikno" color="medium" (ionChange)="onIzciCredentialsChange()">
+      </ion-input>
+      <ion-label color="danger" class="ion-margin-top" *ngIf="kimlikError ">
+        *Boş
+        Bırakılamaz.
+      </ion-label>
+    </div>
+
+
+    <ion-row class="ion-margin-bottom">
+      <ion-col size="6">
+        <div class="input-item ">
+          <ion-label position="stacked">Ad</ion-label>
+          <ion-input type="text" [(ngModel)]="name" color="medium" (ionChange)="onIzciCredentialsChange()"></ion-input>
+          <ion-label color="danger " class="ion-margin-top" *ngIf="nameError ">*Boş
+            Bırakılamaz.</ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="input-item ">
+          <ion-label position="stacked">Soyad</ion-label>
+          <ion-input type="text" [(ngModel)]="surname" color="medium" (ionChange)="onIzciCredentialsChange()">
+          </ion-input>
+          <ion-label color="danger " class="ion-margin-top" *ngIf="surnameError ">*Boş Bırakılamaz.</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-margin-bottom">
+      <ion-col size="6">
+        <div class="input-item">
+          <ion-label position="stacked">Anne Adı</ion-label>
+          <ion-input type="text" [(ngModel)]="mothername" color="medium" (ionChange)="onIzciCredentialsChange()">
+          </ion-input>
+          <ion-label color="danger " class="ion-margin-top" *ngIf="mothernameError">*Boş Bırakılamaz.
+          </ion-label>
+        </div>
+
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="input-item">
+          <ion-label position="stacked">Baba Adı</ion-label>
+          <ion-input type="text" [(ngModel)]="fathername" color="medium" (ionChange)="onIzciCredentialsChange()">
+          </ion-input>
+          <ion-label color="danger " class="ion-margin-top" *ngIf="fathernameError ">*Boş Bırakılamaz.
+          </ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+    <!-- <ion-row class="ion-margin-top">
+      <ion-col size="8" offset="2">
+        <ion-input placeholder="Telefon numarasi " type="tel" [(ngModel)]="phone" color="medium"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-top">
+      <ion-col size="8" offset="2">
+        <ion-input placeholder="Mail adresi " type="email" [(ngModel)]="email" color="medium"></ion-input>
+      </ion-col>
+    </ion-row> -->
+    <ion-row class="" *ngIf="false">
+      <ion-col size="12">
+        <ion-input placeholder="Dogum Tarihi " [(ngModel)]="birthdate" type="date" color="medium"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item class="dogum" lines="none">
+          <ion-label>Dogum Tarihi</ion-label>
+          <ion-datetime displayFormat="YYYY/MM/DD" placeholder="Y/M/D" [(ngModel)]="birthdate"
+            (ionChange)="onIzciCredentialsChange()">
+          </ion-datetime>
+        </ion-item>
+        <ion-label color="danger " class="ion-margin-top" *ngIf="birthdateError">*Boş Bırakılamaz.
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center *ngIf="wrongCredentials">
+      <ion-col size="auto" class="ion-text-center">
+        <ion-text color="danger">
+          <h5>yanlış kimlik bilgileri</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" justify-content-center>
+      <ion-col size="12" class="ion-margin-top">
+        <ion-button color="success" expand="block" (click)="onRegister()">Kayit Ol
+          <ion-spinner *ngIf="showSpinner" name="lines-small" class="ion-margin-start"></ion-spinner>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+</ion-content>

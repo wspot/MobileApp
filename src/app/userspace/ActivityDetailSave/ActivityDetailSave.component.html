@@ -1,0 +1,248 @@
+<app-header [loginbutton]='false'></app-header>
+
+<ion-content>
+  <div class="ion-padding-horizontal" *ngIf="this.DetailsData !== undefined">
+    <ion-grid>
+      <ion-row class="" justify-content-center>
+        <ion-col size="auto" class="ion-text-center" *ngIf="profileImage !== undefined">
+          <ion-avatar>
+            <img src="{{profileImage}}">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="auto" class="ion-text-center" *ngIf="profileImage == undefined">
+          <ion-avatar>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center" *ngIf="userName !== undefined && userSurName !== undefined">
+          <ion-text color="dark" class="ion-no-margin">
+            <h5 class="ion-no-margin">{{userName + ' '+ userSurName}}</h5>
+          </ion-text>
+        </ion-col>
+        <ion-col size="12" class="ion-text-center" *ngIf="userName == undefined || userSurName == undefined">
+          <ion-text color="dark" class="ion-no-margin">
+            <h5 class="ion-no-margin">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="borderedItem ion-margin-vertical">
+        <ion-col size="12" class="ion-text-center">
+          <ion-text color="dark" class="ion-no-margin">
+            <h5 class="ion-no-margin">{{DetailsData.ActivityName}}</h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="" *ngIf="DetailsData.hasDescription">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Açıklama
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="borderedItem ion-margin-bottom" *ngIf="DetailsData.hasDescription">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            {{DetailsData.Description}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="borderedItem ion-margin-bottom" *ngIf="DetailsData.hasDescription">
+        <ion-col size="12" class="ion-text-start ">
+          <ion-textarea auto-grow="true" class="ion-no-padding ion-no-margin" [(ngModel)]="userDescription"
+            disabled="{{ !DetailsData.CanSave}}">
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-bottom" *ngIf="false">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Fotoğrafları
+          </ion-text>
+        </ion-col>
+
+        <ion-row class="" justify-content-between>
+          <ion-col size="3" class=" borderedItem">
+            <img src="{{ image1.profile }}" (click)="onChooseImage(1)" height="">
+          </ion-col>
+
+          <ion-col size="3" class="borderedItem " (click)="onChooseImage(2)">
+            <img src="{{ image2.profile }}">
+          </ion-col>
+
+          <ion-col size="3" class="borderedItem" (click)="onChooseImage(3)">
+            <img src="{{ image3.profile }}">
+          </ion-col>
+        </ion-row>
+      </ion-row>
+
+      <ion-row class="" *ngIf="DetailsData.hasImage">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Fotoğrafları
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="" *ngIf="DetailsData.hasImage">
+        <ion-col size="12" class="borderedItem">
+          <ion-button color="primary" expand="full" disabled={{disableAddImage()}} (click)="onAddImage()">
+            Add new Image
+          </ion-button>
+          <ion-list lines="none">
+            <ion-item color="light" *ngFor="let item of activityImages; let i=index">
+              <ion-label>Image {{i+1}}</ion-label>
+              <ion-button disabled={{!DetailsData.CanSave}} color="danger" (click)="onDeleteImage(i)">
+                <ion-icon name="close-circle"></ion-icon>
+              </ion-button>
+              <ion-button (click)="onShowImage(i)" color="dark">
+                <ion-icon name="share-alt"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="" *ngIf="DetailsData.hasLocation">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Yeri
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="" *ngIf="DetailsData.hasLocation">
+        <ion-col size="12" class="borderedItem">
+          <ion-button color="primary" expand="full" disabled={{disableAddLocation()}} (click)="onAddLocation()">
+            Add new location
+          </ion-button>
+          <ion-list lines="none">
+            <ion-item color="light"
+              *ngIf="(longitude !== null || latitude !== null) && (longitude !== undefined || latitude !== undefined) ">
+              <ion-label>Current location</ion-label>
+
+              <ion-button disabled={{!DetailsData.CanSave}} color="danger" (click)="onDeleteLocation()">
+                <ion-icon name="close-circle"></ion-icon>
+              </ion-button>
+
+              <ion-button (click)="onOpenLocation()" color="dark">
+                <ion-icon name="share-alt"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-around">
+        <ion-col size="auto" class="" *ngIf="DetailsData.CanConfirm">
+          <ion-button expand="block" fill="outline" color="danger" (click)="onChangeActivityStatus(false)">Aktiviteyi
+            <br> Reddet</ion-button>
+        </ion-col>
+
+        <ion-col size="auto" class="" *ngIf="DetailsData.CanConfirm">
+          <ion-button expand="block" fill="outline" color="success" (click)="onChangeActivityStatus(true)">
+            Aktiviteyi<br>Onayla</ion-button>
+        </ion-col>
+
+        <ion-col size="auto" *ngIf="DetailsData.CanSave">
+          <ion-button expand="block" color="success" (click)="onSaveActivity()" disabled='{{ disableSaveActivity() }}'>
+            Aktiviteyi <br> Kaydet</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="ion-padding-horizontal" *ngIf="this.DetailsData == undefined">
+    <ion-grid>
+      <ion-row class="" justify-content-center>
+        <ion-col size="auto" class="ion-text-center">
+          <ion-avatar>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+      <ion-row class="">
+        <ion-col size="12" class="ion-text-center">
+          <ion-text color="dark" class="ion-no-margin">
+            <h5 class="ion-no-margin">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="borderedItem ion-margin-vertical">
+        <ion-col size="12" class="ion-text-center">
+          <ion-text color="dark" class="ion-no-margin">
+            <h5 class="ion-no-margin">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h5>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Açıklama
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="borderedItem ion-margin-bottom">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="borderedItem ion-margin-bottom">
+        <ion-col size="12" class="ion-text-start ">
+          <ion-textarea auto-grow="true" class="ion-no-padding ion-no-margin" [(ngModel)]="userDescription">
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-bottom" justify-content-center>
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Fotoğrafları
+          </ion-text>
+        </ion-col>
+
+        <ion-row class="" justify-content-center>
+          <ion-col size="auto" class=" ">
+            <ion-avatar>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+          </ion-col>
+
+          <ion-col size="auto" class=" ">
+            <ion-avatar>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+          </ion-col>
+
+          <ion-col size="auto" class="">
+            <ion-avatar>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+      </ion-row>
+
+      <ion-row class="">
+        <ion-col size="12" class="ion-text-start">
+          <ion-text color="dark" class="ion-no-margin">
+            Aktivite Yeri
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="">
+        <ion-col size="12" class="borderedItem">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+</ion-content>
+<app-footer></app-footer>
